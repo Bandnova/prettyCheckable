@@ -14,6 +14,7 @@
             label: '',
             labelPosition: 'right',
             customClass: '',
+            labelNotClickable:false,
             color: 'blue'
         };
 
@@ -55,6 +56,12 @@
                 input = clickedParent.find('input'),
                 fakeCheckable = clickedParent.find('a');
 
+            if ($(this).hasClass('notClickable') === true) {
+            	
+            	return;
+            	
+            }
+            
             if (fakeCheckable.hasClass('disabled') === true) {
 
                 return;
@@ -128,6 +135,8 @@
 
             var labelPosition = el.data('labelposition') !== undefined ? 'label' + el.data('labelposition') : 'label' + this.options.labelPosition;
 
+            var labelNotClickable = this.options.labelNotClickable === true ? 'notClickable' : '';
+            
             var customClass = el.data('customclass') !== undefined ? el.data('customclass') : this.options.customClass;
 
             var color =  el.data('color') !== undefined ? el.data('color') : this.options.color;
@@ -144,11 +153,11 @@
             if (labelPosition === 'labelright') {
 
                 dom.push('<a href="#" class="' + isChecked + ' ' + disabled + '"></a>');
-                dom.push('<label for="' + el.attr('id') + '">' + label + '</label>');
+                dom.push('<label class="' + labelNotClickable + '" for="' + el.attr('id') + '">' + label + '</label>');
 
             } else {
 
-                dom.push('<label for="' + el.attr('id') + '">' + label + '</label>');
+                dom.push('<label class="' + labelNotClickable + '" for="' + el.attr('id') + '">' + label + '</label>');
                 dom.push('<a href="#" class="' + isChecked + ' ' + disabled + '"></a>');
 
             }

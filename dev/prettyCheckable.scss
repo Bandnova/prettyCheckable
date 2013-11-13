@@ -35,6 +35,9 @@ $sprite: sprite-map("sprites/*.png", $layout: "horizontal");
         float: left;
         margin: 6px 5px;
         cursor: pointer;
+		&.notClickable{
+			cursor: default;
+		}
     }
 
     a,
